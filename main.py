@@ -71,7 +71,7 @@ def main():
 
 
 def winner_screen(window):
-    if 700 < window.frog.center_y < 800:
+    if 750 < window.frog.center_y < 800:
         window.background_color = arcade.color.LIGHT_CORNFLOWER_BLUE
         arcade.draw_text("YOU WIN!", 400, 750, arcade.color.BLACK, font_size=40)
 
@@ -126,19 +126,21 @@ def car_crashes(window):
 
 def stick_to_log(window):
 
-    if 445 < window.frog.center_y < 675:
+    if 445 < window.frog.center_y < 750:
 
         if does_collide(window.frog, window.firstlog):
             window.frog.center_x = window.firstlog.center_x
 
-        if does_collide(window.frog, window.secondlog):
+        elif does_collide(window.frog, window.secondlog):
             window.frog.center_x = window.secondlog.center_x
 
-        if does_collide(window.frog, window.thirdlog):
+        elif does_collide(window.frog, window.thirdlog):
             window.frog.center_x = window.thirdlog.center_x
 
-        if does_collide(window.frog, window.fourthlog):
+        elif does_collide(window.frog, window.fourthlog):
             window.frog.center_x = window.fourthlog.center_x
+        else:
+            loser_screen(window)
 
 
 
