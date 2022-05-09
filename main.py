@@ -1,3 +1,7 @@
+##CAITLIN PESTANA
+##NO DEATH IF DROWN// NO SOUND// NO SCORE// NO LIVES// NO COMMENTS
+##use arrow keys to move frog, try not to die
+
 import types
 import arcade
 import random
@@ -10,7 +14,8 @@ def main():
     window.street = arcade.Sprite("railroad.jpg", 1.1)
     window.endpanel = arcade.Sprite("grass (2).jpg", 1.25)
     window.startpanel = arcade.Sprite("brix (2).jpg")
-    window.safespot = arcade.Sprite("stone (2).jpg")
+    window.safespot = arcade.Sprite("img.png", .75)
+    window.water = arcade.Sprite("water (2).jpeg", 1.1)
     window.frog = arcade.Sprite("frog.png", .75)
 
     window.firstcar = arcade.Sprite("truck.png", .1, flipped_horizontally=True)
@@ -28,6 +33,8 @@ def main():
     window.endpanel.center_y = 825
     window.startpanel.center_y = 10
     window.safespot.center_y = 400
+    window.water.center_y = 590
+
     window.firstcar.center_y = 90
     window.secondcar.center_y = 175
     window.thirdcar.center_y = 255
@@ -40,6 +47,7 @@ def main():
     window.street.center_x = 400
     window.startpanel.center_x = 400
     window.safespot.center_x = 400
+    window.water.center_x = 400
     window.firstcar.center_x = 0
     window.secondcar.center_x = 0
     window.thirdcar.center_x = 0
@@ -76,6 +84,7 @@ def loser_screen(window):
         window.endpanel.kill()
         window.startpanel.kill()
         window.safespot.kill()
+        window.water.kill()
         window.frog.kill()
         window.firstcar.kill()
         window.secondcar.kill()
@@ -113,18 +122,28 @@ def car_crashes(window):
     if does_collide(window.frog, window.fourthcar):
         loser_screen(window)
 
+
+
 def stick_to_log(window):
+
     if 445 < window.frog.center_y < 675:
+
         if does_collide(window.frog, window.firstlog):
             window.frog.center_x = window.firstlog.center_x
-            if does_collide(window.frog, window.secondlog):
-                window.frog.center_x = window.secondlog.center_x
-                if does_collide(window.frog, window.thirdlog):
-                    window.frog.center_x = window.thirdlog.center_x
-                    if does_collide(window.frog, window.fourthlog):
-                        window.frog.center_x = window.fourthlog.center_x
-        else:
-            loser_screen(window)
+
+        if does_collide(window.frog, window.secondlog):
+            window.frog.center_x = window.secondlog.center_x
+
+        if does_collide(window.frog, window.thirdlog):
+            window.frog.center_x = window.thirdlog.center_x
+
+        if does_collide(window.frog, window.fourthlog):
+            window.frog.center_x = window.fourthlog.center_x
+
+
+
+
+
 
 
 
@@ -138,6 +157,8 @@ def comp151_draw(window):
         window.street.draw()
         window.endpanel.draw()
         window.startpanel.draw()
+
+        window.water.draw()
         window.safespot.draw()
         window.firstcar.draw()
         window.secondcar.draw()
@@ -154,13 +175,13 @@ def comp151_draw(window):
 
 def update_shroom_and_trucks(window):
     window.firstlog.change_x = +2
-    window.secondlog.change_x = -1
-    window.thirdlog.change_x = +.5
+    window.secondlog.change_x = -3
+    window.thirdlog.change_x = +1
     window.fourthlog.change_x = -2
-    window.firstcar.change_x = +2
-    window.secondcar.change_x = -2
-    window.thirdcar.change_x = +2
-    window.fourthcar.change_x = -2
+    window.firstcar.change_x =6
+    window.secondcar.change_x = -9
+    window.thirdcar.change_x = +5
+    window.fourthcar.change_x = -7
     window.firstlog.center_x += window.firstlog.change_x
     window.secondlog.center_x += window.secondlog.change_x
     window.thirdlog.center_x += window.thirdlog.change_x
